@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_dynamic_theme_getx/controller/theme_controller.dart';
+import 'package:get/get.dart';
 
 import '../theme/theme.dart';
 import '../widgets/widgets.dart';
@@ -9,6 +11,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeController = Get.find<ThemeController>();
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Container(
@@ -30,12 +33,25 @@ class MyHomePage extends StatelessWidget {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
-                  ThemeButton(buttonThemeData: AppThemes.lightGreenTheme),
-                  ThemeButton(buttonThemeData: AppThemes.darkGreenTheme),
-                  ThemeButton(buttonThemeData: AppThemes.lightRedTheme),
-                  ThemeButton(buttonThemeData: AppThemes.darkRedTheme),
+                  ThemeButton(buttonThemeData: AppThemes.greenTheme, buttonThemeDataDark: AppThemes.darkGreenTheme),
+                  ThemeButton(buttonThemeData: AppThemes.redTheme, buttonThemeDataDark: AppThemes.darkRedTheme),
                 ],
               ),
+            ),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Light or Dark?",
+                style: Theme.of(context).textTheme.headline5,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Switch(
+              value: themeController.isLightMode.value,
+              onChanged: (bool isLight) {
+                themeController.setThemeMode(isLight);
+              },
             ),
             const SizedBox(height: 10),
             Text(

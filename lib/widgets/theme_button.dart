@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 
 class ThemeButton extends StatelessWidget {
   final ThemeData buttonThemeData;
+  final ThemeData buttonThemeDataDark;
 
-  const ThemeButton({super.key, required this.buttonThemeData});
+  const ThemeButton({super.key, required this.buttonThemeData, required this.buttonThemeDataDark});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class ThemeButton extends StatelessWidget {
 
     return RawMaterialButton(
       onPressed: () {
-        controller.setTheme(buttonThemeData);
+        controller.setThemeData(buttonThemeData);
       },
       shape: const CircleBorder(),
       elevation: 2.0,
@@ -32,14 +33,13 @@ class ThemeButton extends StatelessWidget {
 
   Widget _getIcon() {
     final controller = Get.find<ThemeController>();
-    bool selected = (controller.themeData.value == buttonThemeData);
-    bool isDark = buttonThemeData.brightness == Brightness.dark;
+    bool selected = (controller.themeData.value == buttonThemeData || controller.themeData.value == buttonThemeDataDark);
 
     return Container(
       key: Key((selected) ? "ON" : "OFF"),
       child: Icon(
         (selected) ? Icons.done : null,
-        color: isDark ? buttonThemeData.colorScheme.primary : buttonThemeData.colorScheme.onPrimary,
+        color: buttonThemeData.colorScheme.onPrimary,
         size: 20.0,
       ),
     );

@@ -25,10 +25,10 @@ class AppThemes {
   AppThemes._();
 
   /// ----  Green Theme  ----
-  static final lightGreenTheme = ThemeData.from(colorScheme: _colorSchemeLightGreen);
+  static final greenTheme = ThemeData.from(colorScheme: _colorSchemeLightGreen);
   static final darkGreenTheme = ThemeData.from(colorScheme: _colorSchemeDarkGreen);
 
   /// ----  red Theme  ----
-  static final lightRedTheme = ThemeData.from(colorScheme: _colorSchemeLightRed);
+  static final redTheme = ThemeData.from(colorScheme: _colorSchemeLightRed);
   static final darkRedTheme = ThemeData.from(colorScheme: _colorSchemeDarkRed);
 }

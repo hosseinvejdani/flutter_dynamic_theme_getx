@@ -1,4 +1,4 @@
-import 'package:flutter_dynamic_theme_getx/theme_controller.dart';
+import 'package:flutter_dynamic_theme_getx/controller/theme_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
@@ -33,12 +33,13 @@ class ThemeButton extends StatelessWidget {
   Widget _getIcon() {
     final controller = Get.find<ThemeController>();
     bool selected = (controller.themeData.value == buttonThemeData);
+    bool isDark = buttonThemeData.brightness == Brightness.dark;
 
     return Container(
       key: Key((selected) ? "ON" : "OFF"),
       child: Icon(
-        (selected) ? Icons.done : Icons.close,
-        color: buttonThemeData.accentColor,
+        (selected) ? Icons.done : null,
+        color: isDark ? buttonThemeData.colorScheme.primary : buttonThemeData.colorScheme.onPrimary,
         size: 20.0,
       ),
     );
